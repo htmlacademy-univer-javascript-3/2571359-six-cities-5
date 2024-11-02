@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TPlaceCard} from '../../utils/types.ts';
 import {PlaceCard} from '../PlaceCard/PlaceCard.tsx';
 
@@ -9,8 +9,12 @@ interface IOfferListProps {
 
 export const OfferList: React.FC<IOfferListProps> = ({offers}): JSX.Element => {
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeCard, setActiveCard] = useState<null | number>(null);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(activeCard);
+  }, [activeCard]);
 
   return (
     <div className="cities__places-list places__list tabs__content">
