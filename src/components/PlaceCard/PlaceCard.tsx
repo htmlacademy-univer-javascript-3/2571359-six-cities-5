@@ -2,23 +2,23 @@ import React, {MouseEventHandler} from 'react';
 import {TPlaceCard} from '../../utils/types.ts';
 import {Link} from 'react-router-dom';
 import {Rating} from '../Rating/Rating.tsx';
-import {OBJECT_CLASS_TYPES} from '../../utils/const.ts';
+import {OBJECT_CLASS_TYPES, PlaceClassTypes} from '../../utils/const.ts';
 
 interface IPlaceCardProps {
   place: TPlaceCard;
-  isFullSize: boolean;
+  placeCardType: PlaceClassTypes;
   onMouseOver?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
 }
 
 export const PlaceCard: React.FC<IPlaceCardProps> = ({
   place,
-  isFullSize,
+  placeCardType,
   onMouseOver,
   onMouseLeave
 }) => (
   <article
-    className={`${isFullSize ? 'cities__card' : 'favorites__card'} place-card`}
+    className={`${placeCardType}__card place-card`}
     onMouseOver={onMouseOver}
     onMouseLeave={onMouseLeave}
   >
@@ -27,18 +27,18 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
         <span>Premium</span>
       </div>
     )}
-    <div className={`${isFullSize ? 'cities__image-wrapper' : 'favorites__image-wrapper'} place-card__image-wrapper`}>
+    <div className={`${placeCardType}__image-wrapper place-card__image-wrapper`}>
       <a href="#">
         <img
           className="place-card__image"
           src={place.imageSrc}
-          width={isFullSize ? '260' : '150'}
-          height={isFullSize ? '200' : '110'}
-          alt={place.imageAlt}
+          width={placeCardType !== PlaceClassTypes.Favorites ? '260' : '150'}
+          height={placeCardType !== PlaceClassTypes.Favorites ? '200' : '110'}
+          alt='Alt'
         />
       </a>
     </div>
-    <div className={`${isFullSize ? null : 'favorites__card-info'} place-card__info`}>
+    <div className={`${placeCardType === PlaceClassTypes.Favorites ? 'favorites__card-info' : null} place-card__info`}>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{place.price}</b>

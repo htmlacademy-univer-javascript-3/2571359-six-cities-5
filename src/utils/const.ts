@@ -11,6 +11,12 @@ export enum OBJECT_CLASS_TYPES {
   Offer = 'offer'
 }
 
+export enum PlaceClassTypes {
+  Cities = 'cities',
+  NearPlaces = 'near-places',
+  Favorites = 'favorites'
+}
+
 export const commentStars = [
   { rating: 5, title: 'perfect' },
   { rating: 4, title: 'good' },

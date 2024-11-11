@@ -8,7 +8,6 @@ export type TPlaceCard = {
   isPremium?: boolean;
   isBookmarked?: boolean;
   imageSrc: string;
-  imageAlt?: string;
   price: number;
   rating: TRating;
   name: string;
