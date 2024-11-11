@@ -1,6 +1,8 @@
 import React, {MouseEventHandler} from 'react';
 import {TPlaceCard} from '../../utils/types.ts';
 import {Link} from 'react-router-dom';
+import {Rating} from '../Rating/Rating.tsx';
+import {OBJECT_CLASS_TYPES} from '../../utils/const.ts';
 
 interface IPlaceCardProps {
   place: TPlaceCard;
@@ -49,12 +51,7 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
           <span className="visually-hidden">To bookmarks</span>
         </button>
       </div>
-      <div className="place-card__rating rating">
-        <div className="place-card__stars rating__stars">
-          <span style={{width: `${place.rating * 20}%` }}></span>
-          <span className="visually-hidden">Rating</span>
-        </div>
-      </div>
+      <Rating rating={place.rating} objectType={OBJECT_CLASS_TYPES.Place}/>
       <h2 className="place-card__name">
         <Link to={`/offer/${place.id}`}>{place.name}</Link>
       </h2>
