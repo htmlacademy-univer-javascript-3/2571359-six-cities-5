@@ -1,6 +1,6 @@
-import {TCityObject} from '../utils/types.ts';
+import {TCity} from '../utils/types.ts';
 
-export const cities: TCityObject[] = [
+export const cities: TCity[] = [
   {
     name: 'Amsterdam',
     location: {

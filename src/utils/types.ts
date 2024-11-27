@@ -20,7 +20,7 @@ export type TReviewFormState = {
   rating: number;
 };
 
-export type TCityObject = {
+export type TCity = {
   name: TCityName;
   location: TPoint;
 }
