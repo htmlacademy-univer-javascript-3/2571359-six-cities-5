@@ -13,6 +13,7 @@ export type TPlaceCard = {
   name: string;
   type: TPlaceType;
   location: TPoint;
+  city: TCity;
 };
 
 export type TReviewFormState = {
