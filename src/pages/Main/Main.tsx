@@ -2,7 +2,7 @@ import {useMemo, useState} from 'react';
 import {TPlaceCard} from '../../utils/types.ts';
 import {OfferList} from '../../components/OfferList/OfferList.tsx';
 import {Map} from '../../components/map/map.tsx';
-import {PlaceClassTypes, SortName} from '../../utils/const.ts';
+import {LoadingStatus, PlaceClassTypes, SortName} from '../../utils/const.ts';
 import {CityList} from '../../components/city-list/CityList.tsx';
 import {useAppSelector} from '../../store/hooks.ts';
 import {SortFilter} from '../../components/sort-filter/SortFilter.tsx';
@@ -61,7 +61,7 @@ export const Main = () => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{sortedOffers?.length} places to stay in {currentCity.name}</b>
               <SortFilter currentFilter={currentFilter} onFilterChange={onFilterChange}/>
-              {isLoading
+              {isLoading !== LoadingStatus.SUCCESS
                 ? <Spinner/>
                 : <OfferList offers={sortedOffers} onListItemHover={handleListItemHover} listType={PlaceClassTypes.Cities}/>}
             </section>

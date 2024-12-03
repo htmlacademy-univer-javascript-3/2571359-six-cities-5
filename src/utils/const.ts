@@ -35,6 +35,13 @@ export enum Actions {
   USER = 'User'
 }
 
+export enum LoadingStatus {
+  INIT = 'Init',
+  PENDING = 'Pending',
+  SUCCESS = 'Success',
+  FAILURE = 'Failure'
+}
+
 export const commentStars = [
   { rating: 5, title: 'perfect' },
   { rating: 4, title: 'good' },
@@ -97,16 +104,16 @@ export const CITIES: Record<TCityName, TCity> = {
 export const API_ROUTES = {
   OFFERS: {
     ALL: '/offers',
-    EXACT: '/offers/{offerId}',
-    NEARBY: '/offers/{offerId}/nearby',
+    EXACT: (offerId: string) => `/offers/${offerId}`,
+    NEARBY: (offerId: string) => `/offers/${offerId}/nearby`,
   },
   FAVORITE: {
     GET: '/favorite',
-    SET_STATUS: '/favorite/{offerId}/{status}',
+    SET_STATUS: (offerId: string, status: boolean) => `/favorite/${offerId}/${status}`,
   },
   COMMENTS: {
-    GET: '/comments/{offerId}',
-    POST: '/comments/{offerId}',
+    GET: (offerId: string) => `/comments/${offerId}`,
+    POST: (offerId: string) => `/comments/${offerId}`,
   },
   USER: {
     VALIDATE: '/login',

@@ -28,7 +28,7 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
       </div>
     )}
     <div className={`${placeCardType}__image-wrapper place-card__image-wrapper`}>
-      <a href="#">
+      <Link to={`/offer/${place.id}`}>
         <img
           className="place-card__image"
           src={place.previewImage}
@@ -36,7 +36,7 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
           height={placeCardType !== PlaceClassTypes.Favorites ? '200' : '110'}
           alt='Alt'
         />
-      </a>
+      </Link>
     </div>
     <div className={`${placeCardType === PlaceClassTypes.Favorites ? 'favorites__card-info' : null} place-card__info`}>
       <div className="place-card__price-wrapper">
