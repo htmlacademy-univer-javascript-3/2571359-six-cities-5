@@ -1,9 +1,9 @@
 import React from 'react';
-import {OBJECT_CLASS_TYPES} from '../../utils/const.ts';
+import {ObjectClass} from '../../utils/const.ts';
 
 type IRatingProps = {
   rating: number;
-  objectType: OBJECT_CLASS_TYPES;
+  objectType: ObjectClass;
   isFullMode?: boolean;
 };
 

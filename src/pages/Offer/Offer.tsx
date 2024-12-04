@@ -3,7 +3,7 @@ import {Navigate, useParams} from 'react-router-dom';
 import {ReviewsList} from '../../components/ReviewList/ReviewsList.tsx';
 import {Map} from '../../components/map/map.tsx';
 import {OfferList} from '../../components/OfferList/OfferList.tsx';
-import {LoadingStatus, OBJECT_CLASS_TYPES, PlaceClassTypes} from '../../utils/const.ts';
+import {LoadingStatus, ObjectClass, PlaceClassTypes} from '../../utils/const.ts';
 import {TPlaceCard, TReviewFormState} from '../../utils/types.ts';
 import {useAppDispatch, useAppSelector} from '../../store/hooks.ts';
 import {Header} from '../../components/header/header.tsx';
@@ -67,7 +67,7 @@ export const Offer = () => {
     dispatch(createComment({offerId: offer.id, form}));
   }, [dispatch, offer]);
 
-  if (!id || (isOfferDataLoading === LoadingStatus.FAILURE && !offer)) {
+  if (!id || (isOfferDataLoading === LoadingStatus.Failure && !offer)) {
     return <Navigate to={'/404'}/>;
   }
 
@@ -76,7 +76,7 @@ export const Offer = () => {
       <Header/>
 
       <main className="page__main page__main--offer">
-        {isOfferDataLoading !== LoadingStatus.SUCCESS || !offer ? (
+        {isOfferDataLoading !== LoadingStatus.Success || !offer ? (
           <Spinner/>
         ) : (
           <section className="offer">
@@ -112,7 +112,7 @@ export const Offer = () => {
                 </div>
                 <Rating
                   rating={offer.rating}
-                  objectType={OBJECT_CLASS_TYPES.Offer}
+                  objectType={ObjectClass.Offer}
                   isFullMode
                 />
 
@@ -162,7 +162,7 @@ export const Offer = () => {
                     <p className="offer__text">{offer.description}</p>
                   </div>
                 </div>
-                {isCommentsDataLoading !== LoadingStatus.SUCCESS || !reviews ? (
+                {isCommentsDataLoading !== LoadingStatus.Success || !reviews ? (
                   <Spinner/>
                 ) : (
                   <ReviewsList reviews={reviews}/>
@@ -176,7 +176,7 @@ export const Offer = () => {
           </section>
         )}
         <div className="container">
-          {isOffersDataLoading !== LoadingStatus.SUCCESS || !nearbyOffers ? (
+          {isOffersDataLoading !== LoadingStatus.Success || !nearbyOffers ? (
             <Spinner/>
           ) : (
             <section className="near-places places">

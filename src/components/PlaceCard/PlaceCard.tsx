@@ -2,7 +2,7 @@ import React, {MouseEventHandler} from 'react';
 import {TPlaceCard} from '../../utils/types.ts';
 import {Link} from 'react-router-dom';
 import {Rating} from '../Rating/Rating.tsx';
-import {OBJECT_CLASS_TYPES, PlaceClassTypes} from '../../utils/const.ts';
+import {ObjectClass, PlaceClassTypes} from '../../utils/const.ts';
 
 interface IPlaceCardProps {
   place: TPlaceCard;
@@ -51,7 +51,7 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
           <span className="visually-hidden">To bookmarks</span>
         </button>
       </div>
-      <Rating rating={place.rating} objectType={OBJECT_CLASS_TYPES.Place}/>
+      <Rating rating={place.rating} objectType={ObjectClass.Place}/>
       <h2 className="place-card__name">
         <Link to={`/offer/${place.id}`}>{place.title}</Link>
       </h2>

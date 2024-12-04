@@ -7,9 +7,9 @@ export enum AppRoute {
   Offer = '/offer/:id'
 }
 
-export enum OBJECT_CLASS_TYPES {
+export enum ObjectClass {
   Place = 'place-card',
-  Reviews = 'reviews',
+  Review = 'reviews',
   Offer = 'offer'
 }
 
@@ -20,29 +20,29 @@ export enum PlaceClassTypes {
 }
 
 export enum SortName {
-  POPULAR = 'Popular',
-  LOW_TO_HIGH = 'Price: low to high',
-  HIGH_TO_LOW = 'Price: high to low',
-  TOP_RATED = 'Top rated first',
+  Popular = 'Popular',
+  LowToHigh = 'Price: low to high',
+  HighToLow = 'Price: high to low',
+  TopRated = 'Top rated first',
 }
 
 export enum Actions {
-  CITY = 'City',
-  OFFERS = 'Offers',
-  OFFER = 'Offer',
-  FAVORITES = 'Favorites',
-  COMMENTS = 'Comments',
-  USER = 'User'
+  City = 'City',
+  Offers = 'Offers',
+  Offer = 'Offer',
+  Favorite = 'Favorite',
+  Comment = 'Comment',
+  User = 'User'
 }
 
 export enum LoadingStatus {
-  INIT = 'Init',
-  PENDING = 'Pending',
-  SUCCESS = 'Success',
-  FAILURE = 'Failure'
+  Init = 'Init',
+  Pending = 'Pending',
+  Success = 'Success',
+  Failure = 'Failure'
 }
 
-export const commentStars = [
+export const COMMENT_STARS = [
   { rating: 5, title: 'perfect' },
   { rating: 4, title: 'good' },
   { rating: 3, title: 'not bad' },

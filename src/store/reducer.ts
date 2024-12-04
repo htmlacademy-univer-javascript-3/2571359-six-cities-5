@@ -31,9 +31,9 @@ const initialState:InitialState = {
   offers: [],
   nearbyOffers: [],
   comments: [],
-  isOffersDataLoading: LoadingStatus.INIT,
-  isOfferDataLoading: LoadingStatus.INIT,
-  isCommentsDataLoading: LoadingStatus.INIT
+  isOffersDataLoading: LoadingStatus.Init,
+  isOfferDataLoading: LoadingStatus.Init,
+  isCommentsDataLoading: LoadingStatus.Init
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -46,7 +46,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(clearNearbyOffers, (state) => {
       state.nearbyOffers = [];
-      state.isOffersDataLoading = LoadingStatus.INIT;
+      state.isOffersDataLoading = LoadingStatus.Init;
     })
     .addCase(setOffersLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
@@ -61,7 +61,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(clearOffer, (state) => {
       state.offer = undefined;
-      state.isOfferDataLoading = LoadingStatus.INIT;
+      state.isOfferDataLoading = LoadingStatus.Init;
     })
     .addCase(setOfferLoadingStatus, (state, action) => {
       state.isOfferDataLoading = action.payload;
@@ -82,7 +82,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(clearComments, (state) => {
       state.comments = [];
-      state.isCommentsDataLoading = LoadingStatus.INIT;
+      state.isCommentsDataLoading = LoadingStatus.Init;
     })
     .addCase(setCommentsLoadingStatus, (state, action) => {
       state.isCommentsDataLoading = action.payload;
