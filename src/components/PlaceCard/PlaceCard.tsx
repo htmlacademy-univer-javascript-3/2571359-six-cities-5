@@ -53,8 +53,7 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
           />
         </Link>
       </div>
-      <div
-        className={`${placeCardType === PlaceClassTypes.Favorites ? 'favorites__card-info' : null} place-card__info`}>
+      <div className={`${placeCardType === PlaceClassTypes.Favorites ? 'favorites__card-info' : null} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{place.price}</b>
@@ -81,4 +80,4 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
       </div>
     </article>
   );
-}
+};
