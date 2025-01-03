@@ -66,7 +66,7 @@ export const Offer = () => {
     return [...nearbyOffers.slice(0, 3), offer];
   }, [offer, nearbyOffers]);
 
-  const onFavoriteClick = () => {
+  const handleFavoriteClick = () => {
     if (!isAuthorized) {
       navigate(AppRoute.Login);
       return;
@@ -83,7 +83,7 @@ export const Offer = () => {
     }
   };
 
-  const submitComment = useCallback((form: TReviewFormState) => {
+  const handleSubmitComment = useCallback((form: TReviewFormState) => {
     if (!form || !offer) {
       return;
     }
@@ -127,7 +127,7 @@ export const Offer = () => {
                   <button
                     className={`offer__bookmark-button ${offer.isFavorite ? 'offer__bookmark-button--active' : ''} button`}
                     type="button"
-                    onClick={onFavoriteClick}
+                    onClick={handleFavoriteClick}
                   >
                     <svg className="offer__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"/>
@@ -192,7 +192,7 @@ export const Offer = () => {
                 ) : (
                   <ReviewsList reviews={sortedReviews}/>
                 )}
-                {isAuthorized && <ReviewForm onSubmit={submitComment}/>}
+                {isAuthorized && <ReviewForm onSubmit={handleSubmitComment}/>}
               </div>
             </div>
             <section className="offer__map map">

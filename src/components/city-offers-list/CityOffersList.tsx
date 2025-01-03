@@ -8,15 +8,15 @@ export const CityOffersList = () => {
   const favorites = useAppSelector((state) => state[Actions.Favorites].favorites);
 
   const cityToOffersMap = useMemo(() => {
-    const citiesMap: Partial<Record<TCityName, TPlaceCard[]>> = {};
+    const cityOffersMap: Partial<Record<TCityName, TPlaceCard[]>> = {};
     favorites.forEach((offer) => {
       const city = offer.city.name;
-      if (!citiesMap[city]) {
-        citiesMap[city] = [];
+      if (!cityOffersMap[city]) {
+        cityOffersMap[city] = [];
       }
-      citiesMap[city]?.push(offer);
+      cityOffersMap[city]?.push(offer);
     });
-    return citiesMap;
+    return cityOffersMap;
   }, [favorites]);
 
   return (

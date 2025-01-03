@@ -1,5 +1,5 @@
 import {offersReducer} from './offersReducer';
-import {fillOffers, setOffersLoadingStatus, setNearbyOffers, clearNearbyOffers} from '../action';
+import {setOffers, setOffersLoadingStatus, setNearbyOffers, clearNearbyOffers} from '../action';
 import {LoadingStatus} from '../../utils/const';
 import {TPlaceCard} from '../../utils/types';
 
@@ -30,9 +30,9 @@ describe('offersReducer', () => {
     expect(offersReducer(undefined, { type: undefined })).toEqual(initialState);
   });
 
-  it('should handle fillOffers action', () => {
+  it('should handle setOffers action', () => {
     const mockOffers = [mockOffer];
-    expect(offersReducer(initialState, fillOffers(mockOffers))).toEqual({
+    expect(offersReducer(initialState, setOffers(mockOffers))).toEqual({
       ...initialState,
       offers: mockOffers,
     });

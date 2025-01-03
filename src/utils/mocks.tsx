@@ -9,7 +9,6 @@ import {TRootReducer} from '../store/rootReducer.ts';
 import {createMemoryHistory, MemoryHistory} from 'history';
 import {HistoryRouter} from './HistoryRouter';
 
-
 type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
 
 export const initAsyncActionsStore = () => {

@@ -8,13 +8,13 @@ type ISortFilterProps = {
 
 export const SortFilter: React.FC<ISortFilterProps> = ({currentFilter, onFilterChange}) => {
 
-  const [isActive, setActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by </span>
       <span className="places__sorting-type" tabIndex={0}
-        onClick={() => setActive((active) => !active)}
+        onClick={() => setIsActive((active) => !active)}
       >
         {currentFilter}
         <svg className="places__sorting-arrow" width="7" height="4">
@@ -28,7 +28,7 @@ export const SortFilter: React.FC<ISortFilterProps> = ({currentFilter, onFilterC
             tabIndex={0}
             onClick={() => {
               onFilterChange(filter);
-              setActive(false);
+              setIsActive(false);
             }}
           >
             {filter}

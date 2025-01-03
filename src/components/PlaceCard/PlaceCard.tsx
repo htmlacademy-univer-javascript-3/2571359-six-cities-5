@@ -23,7 +23,7 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
   const dispatch = useAppDispatch();
   const isAuthorized = useAppSelector((state) => state[Actions.User].authorizationStatus);
 
-  const onFavoriteClick = () => {
+  const handleFavoriteClick = () => {
     if (!isAuthorized) {
       navigate(AppRoute.Login);
       return;
@@ -68,7 +68,7 @@ export const PlaceCard: React.FC<IPlaceCardProps> = ({
           <button
             className={`place-card__bookmark-button ${place.isFavorite ? 'place-card__bookmark-button--active' : ''} button`}
             type="button"
-            onClick={onFavoriteClick}
+            onClick={handleFavoriteClick}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>

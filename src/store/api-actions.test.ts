@@ -73,7 +73,7 @@ describe('Async actions', () => {
     ]);
   });
 
-  it('should dispatch fillOffers and setOffersLoadingStatus on fetchOffers', async () => {
+  it('should dispatch setOffers and setOffersLoadingStatus on fetchOffers', async () => {
     const mockOffers = [
       {
         id: '1',

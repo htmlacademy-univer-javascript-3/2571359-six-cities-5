@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
-  fillOffers,
+  setOffers,
   setOffersLoadingStatus,
   setNearbyOffers,
   clearNearbyOffers
@@ -22,7 +22,7 @@ const initialState: OffersState = {
 
 const offersReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fillOffers, (state, action) => {
+    .addCase(setOffers, (state, action) => {
       state.offers = action.payload;
     })
     .addCase(setNearbyOffers, (state, action) => {
