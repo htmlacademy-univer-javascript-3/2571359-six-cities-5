@@ -35,9 +35,10 @@ export const Offer = () => {
       return;
     }
     dispatch(fetchOffer(id));
-
+    dispatch(setActiveOffer(id));
     return () => {
       dispatch(clearOffer());
+      dispatch(setActiveOffer(undefined));
     };
   }, [dispatch, id]);
 
@@ -58,9 +59,12 @@ export const Offer = () => {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 10), [reviews]);
 
-  const handleListItemHover = (placeItemId: string | undefined) => {
-    dispatch(setActiveOffer(placeItemId));
-  };
+  const markers = useMemo(() => {
+    if (!offer) {
+      return nearbyOffers.slice(0, 3);
+    }
+    return [...nearbyOffers.slice(0, 3), offer];
+  }, [offer, nearbyOffers]);
 
   const onFavoriteClick = () => {
     if (!isAuthorized) {
@@ -192,7 +196,7 @@ export const Offer = () => {
               </div>
             </div>
             <section className="offer__map map">
-              <Map city={city} places={nearbyOffers}/>
+              <Map city={city} places={markers}/>
             </section>
           </section>
         )}
@@ -204,8 +208,8 @@ export const Offer = () => {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
                 <OfferList
-                  offers={nearbyOffers}
-                  onListItemHover={handleListItemHover}
+                  offers={markers.slice(0, 3)}
+                  onListItemHover={() => {}}
                   listType={PlaceClassTypes.NearPlaces}
                 />
               </div>
