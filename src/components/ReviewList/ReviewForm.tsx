@@ -47,7 +47,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit: submit }) => {
           your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button className="reviews__submit form__submit button" type="submit"
-          disabled={form.comment.length < 50 || form.rating === 0}
+          disabled={form.comment.length < 50 || form.comment.length > 300 || form.rating === 0}
         >
           Submit
         </button>

@@ -83,19 +83,4 @@ describe('PlaceCard', () => {
     expect(onMouseLeaveMock).toHaveBeenCalledTimes(1);
     expect(onMouseLeaveMock).toHaveBeenCalledWith(expect.anything());
   });
-
-  it('should not show bookmark button if user is not authorized', () => {
-    (useAppSelector as jest.Mock).mockReturnValue(false);
-
-    render(
-      <MemoryRouter>
-        <PlaceCard
-          place={mockPlace}
-          placeCardType={PlaceClassTypes.Cities}
-        />
-      </MemoryRouter>
-    );
-
-    expect(screen.queryByRole('button', { name: /To bookmarks/i })).not.toBeInTheDocument();
-  });
 });

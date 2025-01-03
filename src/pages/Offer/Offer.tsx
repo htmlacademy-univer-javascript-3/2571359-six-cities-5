@@ -1,19 +1,20 @@
 import {useCallback, useEffect, useMemo} from 'react';
-import {Navigate, useParams} from 'react-router-dom';
+import {Navigate, useNavigate, useParams} from 'react-router-dom';
 import {ReviewsList} from '../../components/ReviewList/ReviewsList.tsx';
 import {Map} from '../../components/map/map.tsx';
 import {OfferList} from '../../components/OfferList/OfferList.tsx';
-import {Actions, LoadingStatus, ObjectClass, PlaceClassTypes} from '../../utils/const.ts';
+import {Actions, AppRoute, LoadingStatus, ObjectClass, PlaceClassTypes} from '../../utils/const.ts';
 import {TReviewFormState} from '../../utils/types.ts';
 import {useAppDispatch, useAppSelector} from '../../store/hooks.ts';
 import {Header} from '../../components/header/header.tsx';
-import {createComment, fetchComments, fetchOffer, fetchOffersNearby} from '../../store/api-actions.ts';
+import {changeFavorite, createComment, fetchComments, fetchOffer, fetchOffersNearby} from '../../store/api-actions.ts';
 import {clearComments, clearNearbyOffers, clearOffer, setActiveOffer} from '../../store/action.ts';
 import {Spinner} from '../../components/spinner/spinner.tsx';
 import {Rating} from '../../components/Rating/Rating.tsx';
 import {ReviewForm} from '../../components/ReviewList/ReviewForm.tsx';
 
 export const Offer = () => {
+  const navigate = useNavigate();
   const {id} = useParams();
   const dispatch = useAppDispatch();
 
@@ -61,6 +62,23 @@ export const Offer = () => {
     dispatch(setActiveOffer(placeItemId));
   };
 
+  const onFavoriteClick = () => {
+    if (!isAuthorized) {
+      navigate(AppRoute.Login);
+      return;
+    }
+    if (offer) {
+      dispatch(
+        changeFavorite({
+          offerId: offer?.id,
+          favoriteStatus: !offer?.isFavorite,
+        }),
+      ).then(() =>
+        dispatch(fetchOffer(offer?.id))
+      );
+    }
+  };
+
   const submitComment = useCallback((form: TReviewFormState) => {
     if (!form || !offer) {
       return;
@@ -102,14 +120,16 @@ export const Offer = () => {
                   <h1 className="offer__name">
                     {offer.title}
                   </h1>
-                  {isAuthorized && (
-                    <button className="offer__bookmark-button button" type="button">
-                      <svg className="offer__bookmark-icon" width="31" height="33">
-                        <use xlinkHref="#icon-bookmark"/>
-                      </svg>
-                      <span className="visually-hidden">To bookmarks</span>
-                    </button>
-                  )}
+                  <button
+                    className={`offer__bookmark-button ${offer.isFavorite ? 'offer__bookmark-button--active' : ''} button`}
+                    type="button"
+                    onClick={onFavoriteClick}
+                  >
+                    <svg className="offer__bookmark-icon" width="31" height="33">
+                      <use xlinkHref="#icon-bookmark"/>
+                    </svg>
+                    <span className="visually-hidden">To bookmarks</span>
+                  </button>
                 </div>
                 <Rating
                   rating={offer.rating}
