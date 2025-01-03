@@ -1,15 +1,22 @@
 import {FormEventHandler} from 'react';
-import {Navigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 import {Header} from '../../components/header/header.tsx';
 import {useAppDispatch, useAppSelector} from '../../store/hooks.ts';
-import {Actions, AppRoute} from '../../utils/const.ts';
+import {Actions, AppRoute, CITIES} from '../../utils/const.ts';
 import {userLogin} from '../../store/api-actions.ts';
 import {TAuthData} from '../../utils/types.ts';
+import {changeCity} from '../../store/action.ts';
 
 export const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isAuthorized = useAppSelector((state) => state[Actions.User].authorizationStatus);
+  const randomCity = Object.values(CITIES)[Math.floor(Math.random() * Object.values(CITIES).length)];
 
+  const handleCityClick = () => {
+    dispatch(changeCity(randomCity));
+    navigate(AppRoute.Main);
+  };
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
@@ -59,9 +66,12 @@ export const Login = () => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Paris</span>
-              </a>
+              <button
+                className="locations__item-link"
+                onClick={handleCityClick}
+              >
+                <span>{randomCity.name}</span>
+              </button>
             </div>
           </section>
         </div>
