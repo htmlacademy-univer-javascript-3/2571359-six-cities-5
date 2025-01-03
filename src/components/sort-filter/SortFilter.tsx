@@ -26,7 +26,10 @@ export const SortFilter: React.FC<ISortFilterProps> = ({currentFilter, onFilterC
           <li key={filter}
             className={`places__option ${filter === currentFilter ? 'places__option--active' : null}`}
             tabIndex={0}
-            onClick={() => onFilterChange(filter)}
+            onClick={() => {
+              onFilterChange(filter);
+              setActive(false);
+            }}
           >
             {filter}
           </li>
