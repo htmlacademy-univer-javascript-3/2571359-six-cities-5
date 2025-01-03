@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from 'react';
+import {useCallback, useEffect, useMemo} from 'react';
 import {Navigate, useParams} from 'react-router-dom';
 import {ReviewsList} from '../../components/ReviewList/ReviewsList.tsx';
 import {Map} from '../../components/map/map.tsx';
@@ -52,6 +52,10 @@ export const Offer = () => {
       dispatch(clearComments());
     };
   }, [dispatch, id, offer]);
+
+  const sortedReviews = useMemo(() => [...reviews]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 10), [reviews]);
 
   const handleListItemHover = (placeItemId: string | undefined) => {
     dispatch(setActiveOffer(placeItemId));
@@ -162,7 +166,7 @@ export const Offer = () => {
                 {isCommentsDataLoading !== LoadingStatus.Success || !reviews ? (
                   <Spinner/>
                 ) : (
-                  <ReviewsList reviews={reviews}/>
+                  <ReviewsList reviews={sortedReviews}/>
                 )}
                 {isAuthorized && <ReviewForm onSubmit={submitComment}/>}
               </div>
